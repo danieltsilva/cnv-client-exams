@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 //import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import { fetchQuestions } from '../../actions';
 
 //TODO Move to a global const file
@@ -24,8 +25,9 @@ class QuestionList extends React.Component {
     }
 
     renderList() {
-        //TODO Check if there is really questions here
-        return this.props.questions.map(question => {
+        const questions = this.props.questions;
+        return questions.map(question => {
+            if(_.isEmpty(question)) return <div className="emptyList" key='0'/>;
             return (
                 <div className="item" key={question.id}>
                     <i className="large list alternate outline middle aligned icon"></i>
