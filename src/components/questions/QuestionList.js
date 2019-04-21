@@ -9,15 +9,16 @@ const MAX_CHARS_QUESTION_DESCRIPTION = 30;
 
 class QuestionList extends React.Component {
     componentDidMount() {
-        console.log('FETCH QUESTION');
-        console.log(this.props.match.params.id);
-        //this.props.fetchQuestions();
+        this.props.fetchQuestions();
     }
 
     renderQuestionContent(question) {
         return (
             <div className="content">
-                <p className="header">{question.header}</p>
+                <Link
+                    to={`/questions/${question.id}`}
+                    className="header">{question.header}
+                </Link>
                 <div className="description">
                     {question.statement.substring(0,MAX_CHARS_QUESTION_DESCRIPTION)}
                     {question.statement.length > MAX_CHARS_QUESTION_DESCRIPTION ? '...' : ''}

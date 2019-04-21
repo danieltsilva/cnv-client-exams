@@ -25,5 +25,5 @@ export const fetchQuestions = () => async dispatch => {
 export const fetchQuestion = id => async dispatch => {
     const response = await framework.get(`/api/question/${id}`);
 
-    dispatch({ type: FETCH_QUESTIONS, payload: response.data });
+    dispatch({ type: FETCH_QUESTION, payload: response.data });
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { fetchQuestion } from '../../actions';
 
 const Header = () => {
@@ -16,14 +17,25 @@ const Statement = () => {
     );
 }
 
-const Alternatives = () => {
+const Placeholder = () => {
     return (
-        <div className="ui list">
-            <div className="item">(A) a instalação de um Estado oligárquico, dominado por proprietários de terras, que substituíra uma monarquia.</div>
-            <div className="item">(B) a participação política ampla e igualitária: na Roma antiga, a cidadania se estendia a patrícios e plebeus; no Brasil, a homens e mulheres.</div>
-            <div className="item">(C) a divisão de poderes independentes (Executivo, Legislativo e Judiciário) como forma de organização do Estado.</div>
-            <div className="item">(D) o Senado, composto por membros vitalícios escolhidos por assembleias populares por meio de voto aberto.</div>
-            <div className="item">(E) a eleição de cônsules e presidente, escolhidos para mandatos de quatro anos com funções correlatas em relação à administração e ao comando do Exército.</div>
+        <div className="ui placeholder">
+            <div className="image header">
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            <div className="paragraph">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            <div className="paragraph">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
         </div>
     );
 }
@@ -31,19 +43,34 @@ const Alternatives = () => {
 class QuestionShow extends React.Component {
 
     componentDidMount() {
-        console.log('[SHOW] FETCH QUESTION');
-        //this.props.fetchQuestion();
+        const { id } = this.props.match.params;
+
+        this.props.fetchQuestion(id);
     }
 
     render() {
+        if (!this.props.question) {
+          return <Placeholder />;
+        }
+    
+        const { header, statement } = this.props.question;
+    
         return (
-            <div>
-                <Header />
-                <Statement />
-                <Alternatives />
+          <div>
+            <div className="ui header">{header}</div>
+            <div className="ui content">
+                <p>{statement}</p>
             </div>
-        )
-    }
+          </div>
+        );
+      }
 }
 
-export default QuestionShow;
+const mapStateToProps = (state, ownProps) => {
+    return { question: state.questions[ownProps.match.params.id] };
+  };
+  
+  export default connect(
+    mapStateToProps,
+    { fetchQuestion }
+  )(QuestionShow);
