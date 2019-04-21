@@ -27,3 +27,10 @@ export const fetchQuestion = id => async dispatch => {
 
     dispatch({ type: FETCH_QUESTION, payload: response.data });
 };
+
+export const deleteQuestion = id => async dispatch => {
+    await framework.delete(`/api/question/${id}`);
+  
+    dispatch({ type: DELETE_QUESTION, payload: id });
+    history.push('/');
+};

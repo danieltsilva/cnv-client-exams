@@ -5,11 +5,11 @@ const Modal = props => {
     return ReactDOM.createPortal(
         <div onClick={props.onDismiss} className="ui dimmer modals visible active">
             <div onClick={(e) => e.stopPropagation()} className="ui standard modal visible active">
-                <div class="header">{props.title}</div>
-                <div class="content">
+                <div className="header">{props.title}</div>
+                <div className="content">
                     <p>{props.content}</p>
                 </div>
-                <div class="actions">
+                <div className="actions">
                     {props.actions}
                 </div>
             </div>

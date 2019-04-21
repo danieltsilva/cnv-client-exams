@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { fetchQuestions } from '../../actions';
 
-//TODO Move to a global const file
 const MAX_CHARS_QUESTION_DESCRIPTION = 30;
 
 class QuestionList extends React.Component {
@@ -20,8 +19,12 @@ class QuestionList extends React.Component {
                     className="header">{question.header}
                 </Link>
                 <div className="description">
-                    {question.statement.substring(0,MAX_CHARS_QUESTION_DESCRIPTION)}
-                    {question.statement.length > MAX_CHARS_QUESTION_DESCRIPTION ? '...' : ''}
+                    {
+                        _.truncate(question.statement, {
+                            'length': MAX_CHARS_QUESTION_DESCRIPTION,
+                            'separator': ' '
+                        })
+                    }
                 </div>
             </div>
         )
@@ -30,21 +33,15 @@ class QuestionList extends React.Component {
     renderAdmin(question) {
         return (
             <div className="right floated content">
-            <Link to={`/questions/edit/${question.id}`} className="ui button primary">
-                Edit
-            </Link>
-            <Link
-                to={`/questions/delete/${question.id}`}
-                className="ui button negative"
-            >
-                Delete
-            </Link>
-            <div className="ui vertical animated button" tabIndex="0">
-                <div className="hidden content">Delete</div>
-                <div className="visible content">
-                    <i className="minus square outline icon"></i>
-                </div>
-            </div>
+                <Link to={`/questions/edit/${question.id}`} className="ui button primary">
+                    Edit
+                </Link>
+                <Link
+                    to={`/questions/delete/${question.id}`}
+                    className="ui button negative"
+                >
+                    Delete
+                </Link>
             </div>
         );
     }
