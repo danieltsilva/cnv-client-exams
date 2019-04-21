@@ -31,7 +31,8 @@ const Alternatives = () => {
 class QuestionShow extends React.Component {
 
     componentDidMount() {
-        this.props.fetchQuestion();
+        console.log('[SHOW] FETCH QUESTION');
+        //this.props.fetchQuestion();
     }
 
     render() {

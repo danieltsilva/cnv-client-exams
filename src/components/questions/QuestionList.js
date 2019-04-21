@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { fetchQuestions } from '../../actions';
 
@@ -9,7 +9,9 @@ const MAX_CHARS_QUESTION_DESCRIPTION = 30;
 
 class QuestionList extends React.Component {
     componentDidMount() {
-        this.props.fetchQuestions();
+        console.log('FETCH QUESTION');
+        console.log(this.props.match.params.id);
+        //this.props.fetchQuestions();
     }
 
     renderQuestionContent(question) {
@@ -24,12 +26,38 @@ class QuestionList extends React.Component {
         )
     }
 
+    renderAdmin(question) {
+        return (
+            <div className="right floated content">
+            <Link to={`/questions/edit/${question.id}`} className="ui button primary">
+                Edit
+            </Link>
+            <Link
+                to={`/questions/delete/${question.id}`}
+                className="ui button negative"
+            >
+                Delete
+            </Link>
+            <div className="ui vertical animated button" tabIndex="0">
+                <div className="hidden content">Delete</div>
+                <div className="visible content">
+                    <i className="minus square outline icon"></i>
+                </div>
+            </div>
+            </div>
+        );
+    }
+
     renderList() {
         const questions = this.props.questions;
         return questions.map(question => {
             if(_.isEmpty(question)) return <div className="emptyList" key='0'/>;
             return (
                 <div className="item" key={question.id}>
+                    {this.renderAdmin(question)}
+                    <div className="right floated content">
+                        
+                    </div>
                     <i className="large list alternate outline middle aligned icon"></i>
                     {this.renderQuestionContent(question)}
                 </div>
