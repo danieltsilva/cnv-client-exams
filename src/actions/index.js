@@ -29,7 +29,7 @@ export const fetchQuestion = id => async dispatch => {
 };
 
 export const editQuestion = (id, formValues) => async dispatch => {
-    const response = await framework.patch(`/questions/${id}`, formValues);
+    const response = await framework.patch(`/api/questions/edit/${id}`, formValues);
   
     dispatch({ type: EDIT_QUESTION, payload: response.data });
     history.push('/');
