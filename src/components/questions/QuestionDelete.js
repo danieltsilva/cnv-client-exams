@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal';
-import QuestionShow from './QuestionShow';
 import history from '../../history';
 import { fetchQuestion, deleteQuestion } from '../../actions';
 

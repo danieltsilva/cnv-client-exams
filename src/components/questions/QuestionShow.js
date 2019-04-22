@@ -2,21 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchQuestion } from '../../actions';
 
-const Header = () => {
-    return (
-        <div className="ui header">UNIFAE 2015/1.1 [ANTIGUIDADE CLÁSSICA | ROMA]</div>
-      );
-}
-
-const Statement = () => {
-    return (
-        <div className="ui content">
-            <p>Mais de dois mil anos separam a instalação da República na Roma antiga e no Brasil de 1889. Apesar das diferenças, essas duas formas de governo, distantes no tempo e no espaço, apresentam algumas semelhanças.</p>
-            <p>Dentre essas semelhanças, é correto mencionar</p>
-        </div>
-    );
-}
-
 const Placeholder = () => {
     return (
         <div className="ui placeholder">
