@@ -28,6 +28,13 @@ export const fetchQuestion = id => async dispatch => {
     dispatch({ type: FETCH_QUESTION, payload: response.data });
 };
 
+export const editQuestion = (id, formValues) => async dispatch => {
+    const response = await framework.patch(`/questions/${id}`, formValues);
+  
+    dispatch({ type: EDIT_QUESTION, payload: response.data });
+    history.push('/');
+};
+
 export const deleteQuestion = id => async dispatch => {
     await framework.delete(`/api/question/${id}`);
   

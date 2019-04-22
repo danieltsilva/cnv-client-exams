@@ -1,29 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import QuestionPlaceholder from './QuestionPlaceholder';
 import { fetchQuestion } from '../../actions';
-
-const Placeholder = () => {
-    return (
-        <div className="ui placeholder">
-            <div className="image header">
-                <div className="line"></div>
-                <div className="line"></div>
-            </div>
-            <div className="paragraph">
-                <div className="line"></div>
-                <div className="line"></div>
-                <div className="line"></div>
-                <div className="line"></div>
-                <div className="line"></div>
-            </div>
-            <div className="paragraph">
-                <div className="line"></div>
-                <div className="line"></div>
-                <div className="line"></div>
-            </div>
-        </div>
-    );
-}
 
 class QuestionShow extends React.Component {
 
@@ -35,7 +13,7 @@ class QuestionShow extends React.Component {
 
     render() {
         if (!this.props.question) {
-          return <Placeholder />;
+          return <QuestionPlaceholder />;
         }
     
         const { header, statement } = this.props.question;

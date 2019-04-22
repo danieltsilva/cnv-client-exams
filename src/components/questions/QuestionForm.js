@@ -83,7 +83,7 @@ class QuestionForm extends React.Component {
         this.props.onSubmit(formValues);
     };
     
-      render() {
+    render() {
         return (
             <form
                 onSubmit={this.props.handleSubmit(this.onSubmit)}
